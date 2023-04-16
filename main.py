@@ -8,8 +8,7 @@ st.set_page_config(layout="wide")
 @st.cache_data
 def get_data():
     meta = pd.read_csv("datasets/streamlit_meta.csv", index_col=0)
-    user = pd.read_csv("datasets/streamlit_user.csv", nrows=60000)
-
+    user = pd.read_csv("datasets/streamlit_user_60k.csv")
     return meta, user
 
 
