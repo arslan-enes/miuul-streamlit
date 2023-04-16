@@ -78,12 +78,14 @@ def recommender(tab, meta, user):
     recommendations = user.corrwith(user[selected_movie]).sort_values(ascending=False)[1:6]
 
     movie_one, movie_two, movie_three, movie_four, movie_five = tab.columns(5)
+    recommend_button = col2.button("Öneri Yap")
 
-    for index, movie_col in enumerate([movie_one, movie_two, movie_three, movie_four, movie_five]):
-        movie = meta.loc[meta.title == recommendations.index[index]]
-        movie_col.subheader(movie.original_title.values[0])
-        movie_col.image(get_image_from_imdb(movie.imdb_id.values[0]))
-        movie_col.markdown(f"**{movie.vote_average.values[0]}**")
+    if recommend_button:
+        for index, movie_col in enumerate([movie_one, movie_two, movie_three, movie_four, movie_five]):
+            movie = meta.loc[meta.title == recommendations.index[index]]
+            movie_col.subheader(movie.original_title.values[0])
+            movie_col.image(get_image_from_imdb(movie.imdb_id.values[0]))
+            movie_col.markdown(f"**{movie.vote_average.values[0]}**")
 
 
 def main():
